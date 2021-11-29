@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-//import './App.css';
+import './App.css';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import NavHeader from './components/NavHeader';
 import Dashboard from './components/Dashboard';
