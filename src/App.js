@@ -1,12 +1,13 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
+//import './App.css';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import NavHeader from './components/NavHeader';
 import Dashboard from './components/Dashboard';
 import Register from './components/Register';
 import Login from './components/Login';
+import BoardsList from './components/BoardsList';
 
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
 
 
 
@@ -16,7 +17,7 @@ function App() {
             <NavHeader />
             <main>
                 <Switch>
-                    <Route path="/" exact component={Dashboard} />
+                    <Route path="/" exact component={BoardsList} />
                     <Route path="/login" component={Login} />
                     <Route path="/register" component={Register} />
                     <Route path="/logout" render={(props) => {

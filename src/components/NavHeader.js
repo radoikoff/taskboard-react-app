@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 const NavHeader = () => {
 
     return (
-        <Navbar fixed="top" bg="primary" variant="dark">
+        <Navbar bg="primary" variant="dark">
             <Container>
-                <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+                <Navbar.Brand>Navbar</Navbar.Brand>
                 <Nav className="me-auto">
                     <Nav.Link as={Link} to="/">Home</Nav.Link>
                     <Nav.Link as={Link} to="/login">Login</Nav.Link>
@@ -16,7 +16,7 @@ const NavHeader = () => {
                     <Nav.Link as={Link} to="/login">Login</Nav.Link>
                     <Nav.Link as={Link} to="/register">Register</Nav.Link>
                     <Navbar.Text>
-                        Signed in as: <a href="#login">Mark Otto</a>
+                        Signed in as: Mark Otto
                     </Navbar.Text>
                 </Nav>
             </Container>
