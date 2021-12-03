@@ -1,0 +1,8 @@
+.task-group{
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: #f8f9fa;
+    /*background-image: linear-gradient(90deg,#fff,#f8f9fa);
+    border: 1px solid #fff;*/
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+}

@@ -6,6 +6,7 @@ import Dashboard from './components/Dashboard';
 import Register from './components/Register';
 import Login from './components/Login';
 import BoardsList from './components/BoardsList';
+import Board from './components/Taskboard/Board';
 
 
 
@@ -17,7 +18,7 @@ function App() {
             <NavHeader />
             <main>
                 <Switch>
-                    <Route path="/" exact component={BoardsList} />
+                    <Route path="/" exact component={Board} />
                     <Route path="/login" component={Login} />
                     <Route path="/register" component={Register} />
                     <Route path="/logout" render={(props) => {
