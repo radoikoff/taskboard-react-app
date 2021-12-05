@@ -5,6 +5,7 @@ import NavHeader from './components/NavHeader';
 //import Dashboard from './components/Dashboard';
 import Register from './components/Register';
 import Login from './components/Login';
+import Logout from './components/Logout';
 //import BoardsList from './components/BoardsList';
 import Board from './components/Taskboard/Board';
 
@@ -24,6 +25,7 @@ function App() {
                         <Route path="/" exact component={Board} />
                         <Route path="/login" component={Login} />
                         <Route path="/register" component={Register} />
+                        <Route path="/logout" component={Logout} />
                     </Switch>
                 </main>
                 <footer>
