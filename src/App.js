@@ -3,8 +3,8 @@ import { AuthProvider } from './contexts/AuthContext';
 
 import NavHeader from './components/NavHeader';
 //import Dashboard from './components/Dashboard';
-import Register from './components/Register';
-import Login from './components/Login';
+import Register from './components/Register/Register';
+import Login from './components/Login/Login';
 import Logout from './components/Logout';
 //import BoardsList from './components/BoardsList';
 import Board from './components/Taskboard/Board';

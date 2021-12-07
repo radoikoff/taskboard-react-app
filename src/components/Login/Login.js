@@ -1,6 +1,7 @@
-import { Form, Button } from 'react-bootstrap';
-import * as authService from '../services/authService';
-import { useAuth } from '../contexts/AuthContext';
+import { Form, Button, Nav, Row, Col } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import * as authService from '../../services/authService';
+import { useAuth } from '../../contexts/AuthContext';
 import './Login.css';
 
 const Login = ({ history }) => {
@@ -30,17 +31,17 @@ const Login = ({ history }) => {
             <Form onSubmit={onLoginHandler} method="POST" className="login-form">
                 <Form.Group className="mb-3" controlId="email">
                     <Form.Label>Email address</Form.Label>
-                    <Form.Control type="email" name="email" placeholder="Enter email" />
+                    <Form.Control type="email" name="email" placeholder="Enter email" required />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="password">
                     <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" name="password" placeholder="Password" />
+                    <Form.Control type="password" name="password" placeholder="Enter Password" required />
                 </Form.Group>
-
-                <Button variant="primary" type="submit">
-                    Login
-                </Button>
+                <Form.Group className="auth-btn-section">
+                    <Button variant="primary" className="auth-btn" type="submit">Login</Button>{' '}
+                    <Button variant="outline-secondary" className="auth-btn" as={Link} to="/register">Register</Button>
+                </Form.Group>
             </Form>
         </section >
     );

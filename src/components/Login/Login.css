@@ -1,0 +1,24 @@
+.login-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5rem auto;
+}
+
+.login-form {
+    flex-basis: 30%;
+    border-radius: 8px;
+    border: 1px solid #eaeaea;
+    box-shadow: 0 0.5rem 1.2rem rgb(0 0 0 / 20%);
+    padding: 0.75rem 1.25rem;
+}
+
+.auth-btn-section {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.auth-btn {
+    flex-basis: 40%;
+}
