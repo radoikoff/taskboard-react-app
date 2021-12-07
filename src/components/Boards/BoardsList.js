@@ -1,8 +1,8 @@
 import { Card, Button, Container, Row, Col, Stack } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 import BoardCard from './BoardCard';
-import * as boardService from '../services/boardService';
-import CreateBoard from './CreateBoard';
+import * as boardService from '../../services/boardService';
+//import CreateBoard from './CreateBoard';
 import {Link} from 'react-router-dom';
 
 const BoardsList = ({ history }) => {

@@ -11,6 +11,9 @@ import Board from './components/Taskboard/Board';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import BoardsList from './components/Boards/BoardsList';
+import CreateBoard from './components/CreateBoard/CreateBoard';
+import CreateTask from './components/CreateTask/CreateTask';
 
 
 
@@ -26,6 +29,9 @@ function App() {
                         <Route path="/login" component={Login} />
                         <Route path="/register" component={Register} />
                         <Route path="/logout" component={Logout} />
+                        <Route path="/boards" exact component={BoardsList} />
+                        <Route path="/boards/create" component={CreateBoard} />
+                        <Route path="/tasks/create" component={CreateTask} />
                     </Switch>
                 </main>
                 <footer>
