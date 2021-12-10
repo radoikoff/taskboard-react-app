@@ -14,8 +14,8 @@ const CreateBoard = ({ history }) => {
         const { title, description } = Object.fromEntries(new FormData(e.currentTarget));
 
 
-        boardService.create(title, description, user.accessToken)
-            .then((res) => {
+        boardService.create(title, description)
+            .then(() => {
                 history.push('/boards');
             })
             .catch(err => {

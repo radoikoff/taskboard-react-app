@@ -4,8 +4,7 @@ import {useHistory} from 'react-router-dom'
 import './BoardCard.css';
 
 const BoardCard = ({
-    board,
-    onDelete
+    board
 }) => {
 
     const history = useHistory();
@@ -14,8 +13,8 @@ const BoardCard = ({
         history.push(`/boards/${board._id}`);
     };
 
-    const editClickHandler = () => {
-        history.push(`/boards/edit/${board._id}`);
+    const detailsClickHandler = () => {
+        history.push(`/boards/details/${board._id}`);
     };
 
     return (
@@ -27,10 +26,9 @@ const BoardCard = ({
                     <Card.Text>{board.description}</Card.Text>
                 </Card.Body>
                 <Card.Footer>
-                    <Button variant="warning" size="sm" name="edit" onClick={editClickHandler}>Edit</Button>{' '}
-                    <Button variant="danger" name="delete" size="sm" onClick={onDelete}>Delete</Button>
-                    <cite>Created by:</cite>
-                    <Badge pill bg="warning" text="dark">Peter Pan</Badge>{' '}
+                    <Button variant="warning" size="sm" onClick={detailsClickHandler}>Details</Button>{' '}
+                    <Button variant="success" size="sm" onClick={navigateToBoardClickHandler}>Go to board</Button>
+                    <cite>Created on: {board._createdOn && new Date(board._createdOn).toISOString().slice(0, 10)}</cite>
                 </Card.Footer>
             </Card>
         </Col>

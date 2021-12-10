@@ -8,7 +8,7 @@ async function responseHandler(res) {
     let jsonData = await res.json();
 
     if (res.ok) {
-        return Object.values(jsonData);
+        return jsonData;
     } else {
         throw jsonData;
     }
@@ -20,9 +20,12 @@ function getOptions(method = 'get', body) {
         headers: {}
     };
 
-    const user = getUserData();
-    if (user) {
-        options.headers['X-Authorization'] = user.accessToken;
+    if (method != 'get') {
+        const userItem = localStorage.getItem('user');
+        if (userItem) {
+            const user = JSON.parse(userItem);
+            options.headers['X-Authorization'] = user.accessToken;
+        }
     }
 
     if (body) {
@@ -31,15 +34,6 @@ function getOptions(method = 'get', body) {
     }
 
     return options;
-}
-
-function getUserData() {
-    const user = localStorage.getItem('user');
-    if (user) {
-        return JSON.parse(user);
-    } else {
-        return undefined;
-    }
 }
 
 export const get = (url) => {

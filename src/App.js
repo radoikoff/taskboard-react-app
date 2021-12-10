@@ -11,8 +11,10 @@ import Board from './components/Taskboard/Board';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import BoardsList from './components/Boards/BoardsList';
+import BoardsList from './components/BoardList/BoardsList';
 import CreateBoard from './components/CreateBoard/CreateBoard';
+import BoardDetails from './components/BoardDetails';
+
 import CreateTask from './components/CreateTask/CreateTask';
 
 
@@ -31,6 +33,7 @@ function App() {
                         <Route path="/logout" component={Logout} />
                         <Route path="/boards" exact component={BoardsList} />
                         <Route path="/boards/create" component={CreateBoard} />
+                        <Route path="/boards/details/:boardId" component={BoardDetails} />
                         <Route path="/tasks/create" component={CreateTask} />
                     </Switch>
                 </main>
