@@ -16,7 +16,6 @@ const CreateBoard = ({ history }) => {
 
         boardService.create(title, description, user.accessToken)
             .then((res) => {
-                console.log(res);
                 history.push('/boards');
             })
             .catch(err => {

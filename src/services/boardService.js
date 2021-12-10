@@ -1,10 +1,12 @@
+import * as api from './api';
+
 const baseUrl = 'http://localhost:3030/data';
 
-export function getAll() {
-    return fetch(`${baseUrl}/boards?sortBy=_createdOn%20desc`)
-        .then(res => res.json())
-        .then(result => Object.values(result));
-};
+export const getAll = () => api.get(`${baseUrl}/boards?sortBy=_createdOn%20desc`);
+//     return fetch(`${baseUrl}/boards?sortBy=_createdOn%20desc`)
+//         .then(res => res.json())
+//         .then(result => Object.values(result));
+// };
 
 export function getOne(id) {
 
@@ -13,7 +15,9 @@ export function getOne(id) {
         .then(res => Object.values(res));
 };
 
-export const create = (title, description, token) => {
+export const create = (title, description) => api.post(`${baseUrl}/boards`, { title, description });
+
+/* export const create = (title, description, token) => {
     return fetch(`${baseUrl}/boards`, {
         method: 'POST',
         headers: {
@@ -23,4 +27,4 @@ export const create = (title, description, token) => {
         body: JSON.stringify({ title, description })
     })
         .then(res => res.json());
-}
+} */

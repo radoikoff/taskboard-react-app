@@ -11,7 +11,8 @@ const BoardsList = () => {
 
     useEffect(() => {
         boardService.getAll()
-            .then(res => setBoards(res));
+            .then(res => setBoards(res))
+            .catch((err) => {console.log(err)});
     }, []);
 
     function deleteClickHandler(e) {
