@@ -1,26 +1,44 @@
 import { Card, Button, Container, Row, Col, Stack } from 'react-bootstrap';
-import { useState, useEffect } from 'react';
-import BoardCard from './BoardCard';
-import * as boardService from '../../services/boardService';
-//import CreateBoard from './CreateBoard';
 import { Link } from 'react-router-dom';
+
+import { useState, useEffect } from 'react';
+import * as boardService from '../../services/boardService';
+
+import BoardCard from './BoardCard';
+import ConfirmDialog from '../Common/ConfirmDialog';
 
 const BoardsList = () => {
 
     const [boards, setBoards] = useState([]);
+    const [showDialog, setShowDialog] = useState(false);
+
 
     useEffect(() => {
         boardService.getAll()
             .then(res => setBoards(res))
-            .catch((err) => {console.log(err)});
+            .catch((err) => { console.log(err) });
     }, []);
 
     function deleteClickHandler(e) {
+        setShowDialog(true);
+    };
 
-    }
+    const deleteBoardHandler = (e) => {
+
+        console.log('deleted', e);
+        setShowDialog(false);
+
+    };
 
     return (
         <>
+            <ConfirmDialog
+                show={showDialog}
+                onClose={() => setShowDialog(false)}
+                onSave={deleteBoardHandler}
+                message="Are you sure you want to delete this board?"
+                saveBtnText="Delete"
+            />
             <Container>
                 <Row md={3}>
                     <Col>
@@ -33,7 +51,7 @@ const BoardsList = () => {
                             <BoardCard
                                 key={b._id}
                                 board={b}
-                                onDeleteClick={deleteClickHandler}
+                                onDelete={deleteClickHandler}
                             />)
                         : <h3>No boards available!</h3>
                     }

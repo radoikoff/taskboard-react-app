@@ -5,7 +5,7 @@ import './BoardCard.css';
 
 const BoardCard = ({
     board,
-    deleteClickHandler
+    onDelete
 }) => {
 
     const history = useHistory();
@@ -28,7 +28,7 @@ const BoardCard = ({
                 </Card.Body>
                 <Card.Footer>
                     <Button variant="warning" size="sm" name="edit" onClick={editClickHandler}>Edit</Button>{' '}
-                    <Button variant="danger" name="delete" size="sm" onClick={deleteClickHandler}>Delete</Button>
+                    <Button variant="danger" name="delete" size="sm" onClick={onDelete}>Delete</Button>
                     <cite>Created by:</cite>
                     <Badge pill bg="warning" text="dark">Peter Pan</Badge>{' '}
                 </Card.Footer>
