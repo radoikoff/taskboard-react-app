@@ -1,7 +1,7 @@
 const request = (url, options) => {
     return fetch(url, options)
         .then(responseHandler)
-        .catch((err) => console.log(err));
+        //.catch((err) => console.log(err));
 };
 
 async function responseHandler(res) {
@@ -41,11 +41,15 @@ export const get = (url) => {
 }
 
 export const post = (url, body) => {
-    return request(url, getOptions('post', body));
+    return request(url, getOptions('POST', body));
+}
+
+export const patch = (url, body) => {
+    return request(url, getOptions('PATCH', body));
 }
 
 export const del = (url) => {
-    return request(url, getOptions('delete'));
+    return request(url, getOptions('DELETE'));
 }
 
 

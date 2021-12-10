@@ -21,7 +21,7 @@ const BoardDetails = ({ match, history }) => {
     useEffect(() => {
         boardService.getOne(boardId)
             .then((res) => setBoard(res))
-        //.catch((err) => console.log(err));
+            .catch(() => history.push('/404'));
     }, [boardId]);
 
 

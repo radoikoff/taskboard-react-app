@@ -14,6 +14,7 @@ import './App.css';
 import BoardsList from './components/BoardList/BoardsList';
 import CreateBoard from './components/CreateBoard/CreateBoard';
 import BoardDetails from './components/BoardDetails';
+import EditBoard from './components/EditBoard/EditBoard';
 
 import CreateTask from './components/CreateTask/CreateTask';
 
@@ -34,7 +35,9 @@ function App() {
                         <Route path="/boards" exact component={BoardsList} />
                         <Route path="/boards/create" component={CreateBoard} />
                         <Route path="/boards/details/:boardId" component={BoardDetails} />
+                        <Route path="/boards/edit/:boardId" component={EditBoard} />
                         <Route path="/tasks/create" component={CreateTask} />
+                        <Route component={() => (<p>Not found</p>)} />
                     </Switch>
                 </main>
                 <footer>
