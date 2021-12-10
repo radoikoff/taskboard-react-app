@@ -20,7 +20,7 @@ export const create = (title, description, token) => {
             'content-type': 'application/json',
             'X-Authorization': token
         },
-        body: JSON.stringify({ title, description, token })
+        body: JSON.stringify({ title, description })
     })
         .then(res => res.json());
 }

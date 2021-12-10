@@ -3,9 +3,9 @@ import { useState, useEffect } from 'react';
 import BoardCard from './BoardCard';
 import * as boardService from '../../services/boardService';
 //import CreateBoard from './CreateBoard';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-const BoardsList = ({ history }) => {
+const BoardsList = () => {
 
     const [boards, setBoards] = useState([]);
 
@@ -14,8 +14,8 @@ const BoardsList = ({ history }) => {
             .then(res => setBoards(res));
     }, []);
 
-    function onClickHandler(e) {
-        history.push(`/boards/${e.currentTarget.id}`);
+    function deleteClickHandler(e) {
+
     }
 
     return (
@@ -28,7 +28,12 @@ const BoardsList = ({ history }) => {
                 </Row>
                 <Row xs={1} md={3} className="g-4">
                     {boards.length > 0
-                        ? boards.map(b => <BoardCard key={b._id} board={b} onClickHandler={onClickHandler} />)
+                        ? boards.map(b =>
+                            <BoardCard
+                                key={b._id}
+                                board={b}
+                                onDeleteClick={deleteClickHandler}
+                            />)
                         : <h3>No boards available!</h3>
                     }
                 </Row>
