@@ -4,25 +4,34 @@ import Task from './Task';
 import TaskGroup from './TaskGroup';
 import * as taskService from '../../services/taskService';
 
-const Board = () => {
+const Board = ({
+    match
+}) => {
 
     const [tasks, setTasks] = useState([]);
+    const boardId = match.params.boardId;
 
     useEffect(() => {
-        taskService.getAllTasks()
-            .then(res => setTasks(res));
-    }, []);
+        taskService.getAllTasks(boardId)
+            .then(res => setTasks(Object.values(res)));
+    }, [boardId]);
 
     const onStatusChangeHandler = (taskId, taskStatus) => {
-        if (taskStatus > 1 && taskStatus < 4) {
-            const task = tasks.find(t => t._id == taskId);
-            taskService.updateTask({ ...task, status: taskStatus })
-                .then(() => taskService.getAllTasks()
-                .then(res => setTasks(res)));
+        if (taskStatus >= 1 && taskStatus <= 4) {
+
+            taskService.updateTask(taskId, taskStatus)
+                .then(updatedTask => setTasks((prevState) => {
+                    const index = prevState.findIndex(x => x._id === taskId);
+                    return [
+                        ...prevState.slice(0, index),
+                        updatedTask,
+                        //{ ...prevState[index], status: taskStatus },
+                        ...prevState.slice(index + 1)
+                    ]
+                }));
         }
-
-
     };
+
 
     return (
         <Container>
