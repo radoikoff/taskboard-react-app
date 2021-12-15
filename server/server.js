@@ -1336,7 +1336,7 @@
         tasks: {
             "68e0ed35-2de9-4c61-821d-85f3a49da37b": {
                 "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
-                "title": "Create new SPA 3",
+                "title": "Create new SPA 1",
                 "description": "bla bla bla",
                 "status": 2,
                 "boardId": "ed5ecb7e-01fb-478a-8984-1b82eb7d0255",
@@ -1344,8 +1344,8 @@
             },
             "4544aecd-4b86-436d-af9a-e5784688bd03": {
                 "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
-                "title": "Create new SPA 3",
-                "description": "bla bla bla",
+                "title": "Brand new task",
+                "description": "asd asdfff ds f asfsad fsdaf sda",
                 "status": 1,
                 "boardId": "ed5ecb7e-01fb-478a-8984-1b82eb7d0255",
                 "_createdOn": 1639226898716

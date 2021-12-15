@@ -5,6 +5,7 @@ import * as taskService from '../../services/taskService';
 import NewTaskCard from './NewTaskCard';
 import TaskGroupHeader from './TaskGroupHeader';
 import * as notifications from '../../helpers/notifications';
+import EditTaskModal from './EditTaskModal';
 
 
 const taskTypes = {
@@ -18,28 +19,40 @@ const Board = ({
     match
 }) => {
 
+    const [showEditModal, setShowEditModal] = useState(false);
+    const [currentTaskId, setCurrentTaskId] = useState('');
     const [tasks, setTasks] = useState([]);
-    const boardId = match.params.boardId;
 
+    const boardId = match.params.boardId;
     useEffect(() => {
         taskService.getAllTasks(boardId)
             .then(res => setTasks(Object.values(res)));
     }, [boardId]);
 
-    const onStatusChangeHandler = (taskId, taskStatus) => {
-        if (taskStatus >= 1 && taskStatus <= 4) {
+    /*     const onStatusChangeHandler = (taskId, taskStatus) => {
+            if (taskStatus >= 1 && taskStatus <= 4) {
+    
+                taskService.updateTask(taskId, taskStatus)
+                    .then(updatedTask => setTasks((prevState) => {
+                        const index = prevState.findIndex(x => x._id === taskId);
+                        return [
+                            ...prevState.slice(0, index),
+                            updatedTask,
+                            //{ ...prevState[index], status: taskStatus },
+                            ...prevState.slice(index + 1)
+                        ]
+                    }));
+            }
+        }; */
 
-            taskService.updateTask(taskId, taskStatus)
-                .then(updatedTask => setTasks((prevState) => {
-                    const index = prevState.findIndex(x => x._id === taskId);
-                    return [
-                        ...prevState.slice(0, index),
-                        updatedTask,
-                        //{ ...prevState[index], status: taskStatus },
-                        ...prevState.slice(index + 1)
-                    ]
-                }));
-        }
+    const handleClose = () => {
+        setCurrentTaskId('');
+        setShowEditModal(false);
+    };
+
+    const handleShow = (e) => {
+        setCurrentTaskId(e.currentTarget.id);
+        setShowEditModal(true);
     };
 
     const onDragOverHandler = (e) => {
@@ -52,14 +65,12 @@ const Board = ({
     };
 
     const onDragEnterHandler = (e) => {
-        console.log(e.target.className)
         if (e.target.classList.contains('droptarget')) {
             e.target.style.border = "3px dotted red";
         }
     }
 
     const onDragLeaveHandler = (e) => {
-        console.log(e.target.className)
         if (e.target.classList.contains('droptarget')) {
             e.target.style.border = '';
         }
@@ -85,85 +96,88 @@ const Board = ({
 
 
     return (
-        <Container>
-            <Row>
-                <Col>
-                    <TaskGroupHeader name={taskTypes.backlog} />
-                </Col>
-                <Col>
-                    <TaskGroupHeader name={taskTypes.doing} />
-                </Col>
-                <Col>
-                    <TaskGroupHeader name={taskTypes.review} />
-                </Col>
-                <Col>
-                    <TaskGroupHeader name={taskTypes.completed} />
-                </Col>
-            </Row>
-            <Row>
-                <Col onDragOver={onDragOverHandler}
-                    onDrop={(e) => onDropHandler(e, 1)}
-                    onDragEnter={onDragEnterHandler}
-                    onDragLeave={onDragLeaveHandler}
-                    className="droptarget"
-                >
-                    {tasks.filter(t => t.status == 1).map(t =>
-                        <Task key={t._id}
-                            task={t}
-                            onDragStart={onDragStartHandler}
-                            onTaskEditClick={onTaskEditClickHandler}
-                        />
-                    )}
-                    <NewTaskCard />
-                </Col>
-                <Col onDragOver={onDragOverHandler}
-                    onDrop={(e) => onDropHandler(e, 2)}
-                    onDragEnter={onDragEnterHandler}
-                    onDragLeave={onDragLeaveHandler}
-                    className="droptarget"
-                >
-                    {tasks.filter(t => t.status == 2).map(t =>
-                        <Task key={t._id}
-                            task={t}
-                            onDragStart={onDragStartHandler}
-                            onTaskEditClick={onTaskEditClickHandler}
-                        />
-                    )}
-                    <NewTaskCard />
+        <>
+            <Container>
+                <Row>
+                    <Col>
+                        <TaskGroupHeader name={taskTypes.backlog} />
+                    </Col>
+                    <Col>
+                        <TaskGroupHeader name={taskTypes.doing} />
+                    </Col>
+                    <Col>
+                        <TaskGroupHeader name={taskTypes.review} />
+                    </Col>
+                    <Col>
+                        <TaskGroupHeader name={taskTypes.completed} />
+                    </Col>
+                </Row>
+                <Row>
+                    <Col onDragOver={onDragOverHandler}
+                        onDrop={(e) => onDropHandler(e, 1)}
+                        onDragEnter={onDragEnterHandler}
+                        onDragLeave={onDragLeaveHandler}
+                        className="droptarget"
+                    >
+                        {tasks.filter(t => t.status == 1).map(t =>
+                            <Task key={t._id}
+                                task={t}
+                                onDragStart={onDragStartHandler}
+                                onTaskEditClick={handleShow}
+                            />
+                        )}
+                        <NewTaskCard />
+                    </Col>
+                    <Col onDragOver={onDragOverHandler}
+                        onDrop={(e) => onDropHandler(e, 2)}
+                        onDragEnter={onDragEnterHandler}
+                        onDragLeave={onDragLeaveHandler}
+                        className="droptarget"
+                    >
+                        {tasks.filter(t => t.status == 2).map(t =>
+                            <Task key={t._id}
+                                task={t}
+                                onDragStart={onDragStartHandler}
+                                onTaskEditClick={handleShow}
+                            />
+                        )}
+                        <NewTaskCard />
 
-                </Col>
-                <Col onDragOver={onDragOverHandler}
-                    onDrop={(e) => onDropHandler(e, 3)}
-                    onDragEnter={onDragEnterHandler}
-                    onDragLeave={onDragLeaveHandler}
-                    className="droptarget"
-                >
-                    {tasks.filter(t => t.status == 3).map(t =>
-                        <Task key={t._id}
-                            task={t}
-                            onDragStart={onDragStartHandler}
-                            onTaskEditClick={onTaskEditClickHandler}
-                        />
-                    )}
-                    <NewTaskCard />
-                </Col>
-                <Col onDragOver={onDragOverHandler}
-                    onDrop={(e) => onDropHandler(e, 4)}
-                    onDragEnter={onDragEnterHandler}
-                    onDragLeave={onDragLeaveHandler}
-                    className="droptarget"
-                >
-                    {tasks.filter(t => t.status == 4).map(t =>
-                        <Task key={t._id}
-                            task={t}
-                            onDragStart={onDragStartHandler}
-                            onTaskEditClick={onTaskEditClickHandler}
-                        />
-                    )}
-                    <NewTaskCard />
-                </Col>
-            </Row>
-        </Container>
+                    </Col>
+                    <Col onDragOver={onDragOverHandler}
+                        onDrop={(e) => onDropHandler(e, 3)}
+                        onDragEnter={onDragEnterHandler}
+                        onDragLeave={onDragLeaveHandler}
+                        className="droptarget"
+                    >
+                        {tasks.filter(t => t.status == 3).map(t =>
+                            <Task key={t._id}
+                                task={t}
+                                onDragStart={onDragStartHandler}
+                                onTaskEditClick={handleShow}
+                            />
+                        )}
+                        <NewTaskCard />
+                    </Col>
+                    <Col onDragOver={onDragOverHandler}
+                        onDrop={(e) => onDropHandler(e, 4)}
+                        onDragEnter={onDragEnterHandler}
+                        onDragLeave={onDragLeaveHandler}
+                        className="droptarget"
+                    >
+                        {tasks.filter(t => t.status == 4).map(t =>
+                            <Task key={t._id}
+                                task={t}
+                                onDragStart={onDragStartHandler}
+                                onTaskEditClick={handleShow}
+                            />
+                        )}
+                        <NewTaskCard />
+                    </Col>
+                </Row>
+            </Container>
+            <EditTaskModal taskId={currentTaskId} show={showEditModal} handleClose={handleClose} />
+        </>
     );
 };
 
