@@ -1,9 +1,16 @@
 import { useEffect, useState } from 'react';
-import { Container, Row, Col, Stack, Card, Button } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import Task from './Task';
-import TaskGroup from './TaskGroup';
 import * as taskService from '../../services/taskService';
 import NewTaskCard from './NewTaskCard';
+import TaskGroupHeader from './TaskGroupHeader';
+
+const taskTypes = {
+    backlog: 'Backlog',
+    doing: 'Doing',
+    review: 'In Review',
+    completed: "Completed"
+};
 
 const Board = ({
     match
@@ -42,6 +49,20 @@ const Board = ({
         e.dataTransfer.setData('id', e.currentTarget.id);
     };
 
+    const onDragEnterHandler = (e) => {
+        console.log(e.target.className)
+        if (e.target.classList.contains('droptarget')) {
+            e.target.style.border = "3px dotted red";
+        }
+    }
+
+    const onDragLeaveHandler = (e) => {
+        console.log(e.target.className)
+        if (e.target.classList.contains('droptarget')) {
+            e.target.style.border = '';
+        }
+    }
+
     const onDropHandler = (e, status) => {
         e.preventDefault();
         const taskId = e.dataTransfer.getData('id');
@@ -55,6 +76,8 @@ const Board = ({
 
         taskService.updateTask(taskId, status)
             .then(setTasks(modifiedTasks));
+
+        e.target.style.border = '';
     };
 
 
@@ -62,41 +85,59 @@ const Board = ({
         <Container>
             <Row>
                 <Col>
-                    <Card>
-                        <Card.Body>
-                            <h6>Backlog</h6>
-                        </Card.Body>
-                    </Card>
+                    <TaskGroupHeader name={taskTypes.backlog} />
                 </Col>
                 <Col>
+                    <TaskGroupHeader name={taskTypes.doing} />
                 </Col>
                 <Col>
+                    <TaskGroupHeader name={taskTypes.review} />
                 </Col>
                 <Col>
+                    <TaskGroupHeader name={taskTypes.completed} />
                 </Col>
             </Row>
             <Row>
-                <Col onDragOver={onDragOverHandler} onDrop={(e) => onDropHandler(e, 1)}>
-
+                <Col onDragOver={onDragOverHandler}
+                    onDrop={(e) => onDropHandler(e, 1)}
+                    onDragEnter={onDragEnterHandler}
+                    onDragLeave={onDragLeaveHandler}
+                    className="droptarget"
+                >
                     {tasks.filter(t => t.status == 1).map(t =>
                         <Task key={t._id} task={t} onStatusChangeHandler={onStatusChangeHandler} onDragStart={onDragStartHandler} />
                     )}
                     <NewTaskCard />
                 </Col>
-                <Col onDragOver={onDragOverHandler} onDrop={(e) => onDropHandler(e, 2)}>
+                <Col onDragOver={onDragOverHandler}
+                    onDrop={(e) => onDropHandler(e, 2)}
+                    onDragEnter={onDragEnterHandler}
+                    onDragLeave={onDragLeaveHandler}
+                    className="droptarget"
+                >
                     {tasks.filter(t => t.status == 2).map(t =>
                         <Task key={t._id} task={t} onStatusChangeHandler={onStatusChangeHandler} onDragStart={onDragStartHandler} />
                     )}
                     <NewTaskCard />
 
                 </Col>
-                <Col onDragOver={onDragOverHandler} onDrop={(e) => onDropHandler(e, 3)}>
+                <Col onDragOver={onDragOverHandler}
+                    onDrop={(e) => onDropHandler(e, 3)}
+                    onDragEnter={onDragEnterHandler}
+                    onDragLeave={onDragLeaveHandler}
+                    className="droptarget"
+                >
                     {tasks.filter(t => t.status == 3).map(t =>
                         <Task key={t._id} task={t} onStatusChangeHandler={onStatusChangeHandler} onDragStart={onDragStartHandler} />
                     )}
                     <NewTaskCard />
                 </Col>
-                <Col onDragOver={onDragOverHandler} onDrop={(e) => onDropHandler(e, 4)}>
+                <Col onDragOver={onDragOverHandler}
+                    onDrop={(e) => onDropHandler(e, 4)}
+                    onDragEnter={onDragEnterHandler}
+                    onDragLeave={onDragLeaveHandler}
+                    className="droptarget"
+                >
                     {tasks.filter(t => t.status == 4).map(t =>
                         <Task key={t._id} task={t} onStatusChangeHandler={onStatusChangeHandler} onDragStart={onDragStartHandler} />
                     )}

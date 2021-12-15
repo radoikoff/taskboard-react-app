@@ -1,0 +1,9 @@
+.new-task-card{
+    padding: inherit;
+    background-color: rgb(191, 228, 252);
+}
+
+.new-task-card:hover{
+    padding: inherit;
+    background-color: skyblue;
+}

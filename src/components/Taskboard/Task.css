@@ -1,6 +1,6 @@
 .card-body {
     flex: 1 1 auto;
-    background-color: #fff;
+    /* background-color: #fff; */
     padding: 1rem;
     border-radius: 8px;
     box-shadow: rgb(99 99 99 / 10%) 0px 2px 8px 0px;
