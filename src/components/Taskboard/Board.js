@@ -4,6 +4,8 @@ import Task from './Task';
 import * as taskService from '../../services/taskService';
 import NewTaskCard from './NewTaskCard';
 import TaskGroupHeader from './TaskGroupHeader';
+import * as notifications from '../../helpers/notifications';
+
 
 const taskTypes = {
     backlog: 'Backlog',
@@ -75,7 +77,8 @@ const Board = ({
         });
 
         taskService.updateTask(taskId, status)
-            .then(setTasks(modifiedTasks));
+            .then(setTasks(modifiedTasks))
+            .catch((err) => notifications.createError(`${err.code} - ${err.message}`));
 
         e.target.style.border = '';
     };
@@ -105,7 +108,11 @@ const Board = ({
                     className="droptarget"
                 >
                     {tasks.filter(t => t.status == 1).map(t =>
-                        <Task key={t._id} task={t} onStatusChangeHandler={onStatusChangeHandler} onDragStart={onDragStartHandler} />
+                        <Task key={t._id}
+                            task={t}
+                            onDragStart={onDragStartHandler}
+                            onTaskEditClick={onTaskEditClickHandler}
+                        />
                     )}
                     <NewTaskCard />
                 </Col>
@@ -116,7 +123,11 @@ const Board = ({
                     className="droptarget"
                 >
                     {tasks.filter(t => t.status == 2).map(t =>
-                        <Task key={t._id} task={t} onStatusChangeHandler={onStatusChangeHandler} onDragStart={onDragStartHandler} />
+                        <Task key={t._id}
+                            task={t}
+                            onDragStart={onDragStartHandler}
+                            onTaskEditClick={onTaskEditClickHandler}
+                        />
                     )}
                     <NewTaskCard />
 
@@ -128,7 +139,11 @@ const Board = ({
                     className="droptarget"
                 >
                     {tasks.filter(t => t.status == 3).map(t =>
-                        <Task key={t._id} task={t} onStatusChangeHandler={onStatusChangeHandler} onDragStart={onDragStartHandler} />
+                        <Task key={t._id}
+                            task={t}
+                            onDragStart={onDragStartHandler}
+                            onTaskEditClick={onTaskEditClickHandler}
+                        />
                     )}
                     <NewTaskCard />
                 </Col>
@@ -139,7 +154,11 @@ const Board = ({
                     className="droptarget"
                 >
                     {tasks.filter(t => t.status == 4).map(t =>
-                        <Task key={t._id} task={t} onStatusChangeHandler={onStatusChangeHandler} onDragStart={onDragStartHandler} />
+                        <Task key={t._id}
+                            task={t}
+                            onDragStart={onDragStartHandler}
+                            onTaskEditClick={onTaskEditClickHandler}
+                        />
                     )}
                     <NewTaskCard />
                 </Col>
