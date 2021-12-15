@@ -1,5 +1,7 @@
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import {NotificationContainer} from 'react-notifications';
 import { AuthProvider } from './contexts/AuthContext';
+import 'react-notifications/lib/notifications.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.css'
 import './App.css';
@@ -44,6 +46,7 @@ function App() {
                 <footer>
 
                 </footer>
+                <NotificationContainer/>
             </BrowserRouter>
         </AuthProvider>
     );

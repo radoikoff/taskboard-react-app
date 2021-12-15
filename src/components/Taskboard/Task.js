@@ -1,16 +1,16 @@
-//import './TaskGroup.css';
+import { useState } from "react";
 import { Card, Button, Badge } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import './Task.css';
 
 const Task = ({
     task,
-    onStatusChangeHandler,
     onDragStart,
-    onTaskClick
+    onTaskEditClick
 }) => {
+
     return (
-        <Card id={task._id} className="card-col" draggable onDragStart={onDragStart} onClick={onTaskClick}>
+        <Card id={task._id} className="card-col" draggable onDragStart={onDragStart} onClick={onTaskEditClick}>
             <Card.Body>
                 <div className="card-action">
                     <h6 className="card-title">
