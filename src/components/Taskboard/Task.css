@@ -1,0 +1,30 @@
+.card-body {
+    flex: 1 1 auto;
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: rgb(99 99 99 / 10%) 0px 2px 8px 0px;
+    width: 100%;
+}
+
+.card-body:active {
+    cursor: move;
+    outline: 3px dashed #7b7b7b;
+    outline-offset: 1px;
+}
+
+.card-col {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    cursor: pointer;
+  }
+
+.card-action {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* .full-content-text {
+    display: none;
+} */
+

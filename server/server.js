@@ -1333,37 +1333,62 @@
         }
     };
     var seedData = {
-        games: {
-            "ff436770-76c5-40e2-b231-77409eda7a61": {
+        tasks: {
+            "68e0ed35-2de9-4c61-821d-85f3a49da37b": {
                 "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
-                "title": "CoverFire",
-                "category": "Action",
-                "maxLevel": "70",
-                "imageUrl": "/images/CoverFire.png",
-                "summary": "Best action shooter game, easy controls, realistic 3D graphics and fun offline missions. Get your best shooting gun and take to action!",
-                "_createdOn": 1617194128618,
+                "title": "Create new SPA 3",
+                "description": "bla bla bla",
+                "status": 2,
+                "boardId": "ed5ecb7e-01fb-478a-8984-1b82eb7d0255",
+                "_createdOn": 1639226598569,
             },
-            "1840a313-225c-416a-817a-9954d4609f7c": {
+            "4544aecd-4b86-436d-af9a-e5784688bd03": {
                 "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
-                "title": "MineCraft",
-                "category": "Arcade",
-                "maxLevel": "250",
-                "imageUrl": "/images/MineCraft.png",
-                "summary": "Set in a world where fantasy creatures live side by side with humans. A human cop is forced to work with an Orc to find a weapon everyone is prepared to kill for. Set in a world where fantasy creatures live side by side with humans. A human cop is forced to work with an Orc to find a weapon everyone is prepared to kill for.",
-                "_createdOn": 1617194210928,
+                "title": "Create new SPA 3",
+                "description": "bla bla bla",
+                "status": 1,
+                "boardId": "ed5ecb7e-01fb-478a-8984-1b82eb7d0255",
+                "_createdOn": 1639226898716
             },
-            "126777f5-3277-42ad-b874-76d043b069cb": {
-                "_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
-                "title": "Zombie Lang",
-                "category": "Vertical Shooter",
-                "maxLevel": "100",
-                "imageUrl": "/images/ZombieLang.png",
-                "summary": "With it’s own unique story, set between the events of the first movie, Zombieland: Double Tap- Road Trip is a ridiculously fun top-down twin-stick shooter featuring local co-op multiplayer for up to four players. Play as your favorite heroes from the original — Tallahassee, Columbus, Wichita and Little Rock — as well as new unlockable characters from the upcoming sequel.  The game embraces the game-like elements seen in the film by  incorporating everything from the “Rules” to “Zombie Kill of the Week”.  Use your special abilities, an arsenal of weapons and the essential Zombieland rules for survival to stay alive against huge numbers of uniquely grotesque and dangerous undead monstrosities in Zombieland: Double Tap- Road Trip’s story-based campaign mode, wave-based horde mode, and boss battles.",
-                "_createdOn": 1617194295474,
+            "3ada8f6c-cd80-430a-96eb-370a1160da65": {
+                "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
+                "title": "Create new SPA 3",
+                "description": "bla bla bla",
+                "status": 3,
+                "boardId": "ed5ecb7e-01fb-478a-8984-1b82eb7d0255",
+                "_createdOn": 1639226914774
+            },
+            "1d47f828-348e-44d5-8357-231ae94dbb41": {
+                "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
+                "title": "Create new SPA 3",
+                "description": "bla bla bla",
+                "status": 3,
+                "boardId": "ed5ecb7e-01fb-478a-8984-1b82eb7d0255"
+            },
+            "6b8686dd-e2f2-423f-830e-caa26edf6481": {
+                "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
+                "title": "Create new SPA 3",
+                "description": "bla bla bla",
+                "status": 4,
+                "boardId": "ed5ecb7e-01fb-478a-8984-1b82eb7d0255",
+                "_createdOn": 1639226935036
             }
         },
-        comments: {
-        
+        boards: {
+            "ed5ecb7e-01fb-478a-8984-1b82eb7d0255": {
+                "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
+                "title": "Board A",
+                "description": "This is good board.",
+                "_createdOn": 1639178616025,
+                "_updatedOn": 1639434288888
+            },
+            "c511a794-0028-4f17-96a8-e68fcba7b5fe": {
+                "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
+                "title": "Board B",
+                "description": "dasfsdafdfsadf",
+                "_createdOn": 1639434273927,
+                "_updatedOn": 1639434285805
+            }
         }
     };
     var rules$1 = {
