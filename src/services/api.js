@@ -48,6 +48,10 @@ export const patch = (url, body) => {
     return request(url, getOptions('PATCH', body));
 }
 
+export const put = (url, body) => {
+    return request(url, getOptions('PUT', body));
+}
+
 export const del = (url) => {
     return request(url, getOptions('DELETE'));
 }

@@ -87,12 +87,22 @@ const Board = ({
             return task;
         });
 
-        taskService.updateTask(taskId, status)
+        taskService.updateTaskStatus(taskId, status)
             .then(setTasks(modifiedTasks))
             .catch((err) => notifications.createError(`${err.code} - ${err.message}`));
 
         e.target.style.border = '';
     };
+
+    const handleModalSubmit = (updatedTask) => {
+        setTasks((prevState) => {
+            const index = prevState.findIndex(t => t._id === updatedTask._id);
+            const newTasks = [...prevState]
+            newTasks[index] = updatedTask;
+            return newTasks;
+        });
+        //notifications.createSuccess('');
+    }
 
 
     return (
@@ -176,7 +186,7 @@ const Board = ({
                     </Col>
                 </Row>
             </Container>
-            <EditTaskModal taskId={currentTaskId} show={showEditModal} handleClose={handleClose} />
+            <EditTaskModal taskId={currentTaskId} show={showEditModal} handleClose={handleClose} handleModalSubmit={handleModalSubmit} />
         </>
     );
 };
