@@ -15,19 +15,26 @@ export const login = async (email, password) => {
     if (res.ok) {
         return jsonResult;
     } else {
-        throw jsonResult.message;
+        throw jsonResult;
     }
 };
 
-export const register = (email, password) => {
-    return fetch(`${baseUrl}/users/register`, {
+export const register = async (email, password, firstName, lastName) => {
+    let res = await fetch(`${baseUrl}/users/register`, {
         method: 'POST',
         headers: {
             'content-type': 'application/json'
         },
-        body: JSON.stringify({ email, password })
-    })
-        .then(res => res.json());
+        body: JSON.stringify({ email, password, firstName, lastName })
+    });
+
+    let jsonResult = await res.json();
+
+    if (res.ok) {
+        return jsonResult;
+    } else {
+        throw jsonResult;
+    }
 };
 
 export const logout = (token) => {

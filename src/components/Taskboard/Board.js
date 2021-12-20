@@ -194,7 +194,7 @@ const Board = ({
                                 onDelete={handleShowDelete}
                             />
                         )}
-                        {user.email && <NewTaskCard boardId={boardId} taskStatus={4} onTaskCreated={createdTaskHandler} />}
+                        {user.email && <NewTaskCard boardId={boardId} taskStatus={4} onTaskCreated={createdTaskHandler} user={user} />}
                     </Col>
                 </Row>
             </Container>

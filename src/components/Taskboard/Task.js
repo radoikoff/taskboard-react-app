@@ -1,4 +1,4 @@
-import { Card, Button, Badge } from "react-bootstrap";
+import { Card, Badge } from "react-bootstrap";
 import { useAuth } from '../../contexts/AuthContext';
 import './Task.css';
 
@@ -31,10 +31,18 @@ const Task = ({
                         : task.description
                     }
                 </Card.Text>
-                <Badge variant="info">dev</Badge>
-                {/*                 <NavLink to={`/tasks/${task._id}`}>Edit</NavLink>
-                {task.status < 4 && <Button onClick={() => onStatusChangeHandler(task._id, task.status + 1)}>+</Button>}
-                {task.status > 1 && <Button onClick={() => onStatusChangeHandler(task._id, task.status - 1)}>-</Button>} */}
+
+                <div className="tags-list">
+                    <Badge variant="info">dev</Badge>
+                    <Badge variant="info">dev</Badge>
+                </div>
+                <div className="author-area">
+                    <cite>Owner:</cite> &nbsp;
+                    {user._id == task._ownerId
+                        ? <Badge pill bg="warning">Me</Badge>
+                        : <cite>{`${task.author.firstName} ${task.author.lastName}`}</cite>
+                    }
+                </div>
 
             </Card.Body>
         </Card>

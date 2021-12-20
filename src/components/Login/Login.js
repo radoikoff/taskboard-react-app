@@ -2,6 +2,8 @@ import { Form, Button, Nav, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import * as authService from '../../services/authService';
 import { useAuth } from '../../contexts/AuthContext';
+import * as notifications from '../../helpers/notifications';
+
 import './Login.css';
 
 const Login = ({ history }) => {
@@ -21,8 +23,7 @@ const Login = ({ history }) => {
                 history.push('/');
             })
             .catch(err => {
-                // TODO: show notification
-                console.log(err);
+                notifications.createError(err.message);
             });
     }
 

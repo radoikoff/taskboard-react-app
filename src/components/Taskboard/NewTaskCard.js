@@ -18,8 +18,11 @@ const NewTaskCard = ({
             boardId: boardId
         })
             .then(newTask => {
-                onTaskCreated(newTask);
-                notifications.createSuccess();
+                taskService.getTask(newTask._id)
+                    .then(task => {
+                        onTaskCreated(task);
+                        notifications.createSuccess();
+                    })
             })
             .catch(err => notifications.createError(err.message));
     }

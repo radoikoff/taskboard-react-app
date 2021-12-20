@@ -18,7 +18,7 @@ const NavHeader = () => {
                 <Nav className="justify-content-end" variant="pills">
                     {user.email
                         ? (<>
-                            <Navbar.Text>Welcome, {user.email}</Navbar.Text>
+                            <Navbar.Text>{`Welcome, ${user.firstName}`}</Navbar.Text>
                             <Nav.Link as={Link} to="/logout">Logout</Nav.Link>
                         </>)
                         : (<>

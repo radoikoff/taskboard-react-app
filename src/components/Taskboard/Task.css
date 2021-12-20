@@ -27,4 +27,8 @@
 /* .full-content-text {
     display: none;
 } */
-
+.author-area {
+    font-size: .8rem;
+    display: flex;
+    justify-content: end;
+}

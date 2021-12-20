@@ -4,9 +4,9 @@ const baseUrl = 'http://localhost:3030/data';
 
 
 
-export const getAllTasks = (boardId) => api.get(`${baseUrl}/tasks?where=boardId%3D%22${boardId}%22`);
+export const getAllTasks = (boardId) => api.get(`${baseUrl}/tasks?where=boardId%3D%22${boardId}%22&load=author%3D_ownerId%3Ausers`);
 
-export const getTask = (id) => api.get(`${baseUrl}/tasks/${id}`);
+export const getTask = (id) => api.get(`${baseUrl}/tasks/${id}?load=author%3D_ownerId%3Ausers`);
 
 export const updateTaskStatus = (id, status) => api.patch(`${baseUrl}/tasks/${id}`, { status });
 
