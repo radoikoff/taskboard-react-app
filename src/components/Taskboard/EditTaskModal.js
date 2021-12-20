@@ -8,7 +8,8 @@ const EditTaskModal = ({
     taskId,
     show,
     handleClose,
-    handleModalSubmit
+    handleModalSubmit,
+    taskStatuses
 }) => {
 
     const [task, setTask] = useState({
@@ -27,7 +28,6 @@ const EditTaskModal = ({
         setErrors({ title: false, description: false });
     }, [taskId])
 
-
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         validateForm(e);
@@ -43,7 +43,16 @@ const EditTaskModal = ({
                 handleModalSubmit(res);
                 notifications.createSuccess('sucess');
             })
-            .catch((err) => notifications.createError(`${err.code} - ${err.message}`));
+            .catch((err) => {
+                let message = '';
+
+                if (err.message == 'Forbidden') {
+                    message = 'You are not the owner of the task!';
+                } else if (err.message == 'Invalid access token') {
+                    message = 'Please log in first!';
+                }
+                notifications.createError(message);
+            });
         handleClose();
 
     };
@@ -100,19 +109,19 @@ const EditTaskModal = ({
                         <Form.Group as={Col}>
                             <Form.Label>Task status</Form.Label>
                             <Form.Select name="status" value={task.status} onChange={handleInputChange}>
-                                <option value={1}>1</option>
-                                <option value={2}>2</option>
-                                <option value={3}>3</option>
-                                <option value={4}>4</option>
+                                {taskStatuses.map(ts =>
+                                    <option key={ts._id} value={ts._id}>{ts.name}</option>
+                                )}
                             </Form.Select>
                         </Form.Group>
 
                         <Form.Group as={Col}>
                             <Form.Label>Tags</Form.Label>
                             <Form.Select name="tags" multiple={true} value={task.tags} onChange={handleInputChange}>
-                                <option value={1}>Cdffdf..</option>
-                                <option value={2}>dfdf..</option>
-                                <option value={3}>dddd</option>
+                                <option value={1}>1</option>
+                                <option value={2}>2</option>
+                                <option value={3}>3</option>
+                                <option value={4}>4</option>
                             </Form.Select>
                         </Form.Group>
                     </Row>

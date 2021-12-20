@@ -7,14 +7,8 @@ import TaskGroupHeader from './TaskGroupHeader';
 import * as notifications from '../../helpers/notifications';
 import EditTaskModal from './EditTaskModal';
 import ConfirmDialog from '../Common/ConfirmDialog';
+import { useAuth } from '../../contexts/AuthContext';
 
-
-const taskStatuses = [
-    { _id: 1, name: 'Backlog' },
-    { _id: 2, name: 'Doing' },
-    { _id: 3, name: 'In Review' },
-    { _id: 4, name: 'Completed' }
-];
 
 const Board = ({
     match
@@ -24,6 +18,9 @@ const Board = ({
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [currentTaskId, setCurrentTaskId] = useState('');
     const [tasks, setTasks] = useState([]);
+    const [taskStatuses, setTaskStatuses] = useState([]);
+
+    const { user } = useAuth();
 
     const boardId = match.params.boardId;
     useEffect(() => {
@@ -31,21 +28,12 @@ const Board = ({
             .then(res => setTasks(Object.values(res)));
     }, [boardId]);
 
-    /*     const onStatusChangeHandler = (taskId, taskStatus) => {
-            if (taskStatus >= 1 && taskStatus <= 4) {
-    
-                taskService.updateTask(taskId, taskStatus)
-                    .then(updatedTask => setTasks((prevState) => {
-                        const index = prevState.findIndex(x => x._id === taskId);
-                        return [
-                            ...prevState.slice(0, index),
-                            updatedTask,
-                            //{ ...prevState[index], status: taskStatus },
-                            ...prevState.slice(index + 1)
-                        ]
-                    }));
-            }
-        }; */
+    useEffect(() => {
+        taskService.getTaskStatuses()
+            .then(res => setTaskStatuses(res))
+            .catch(err => console.log(err));
+    }, []);
+
 
     const handleClose = () => {
         setCurrentTaskId('');
@@ -158,7 +146,7 @@ const Board = ({
                                 onDelete={handleShowDelete}
                             />
                         )}
-                        <NewTaskCard boardId={boardId} taskStatus={1} onTaskCreated={createdTaskHandler} />
+                        {user.email && <NewTaskCard boardId={boardId} taskStatus={1} onTaskCreated={createdTaskHandler} />}
                     </Col>
                     <Col onDragOver={onDragOverHandler}
                         onDrop={(e) => onDropHandler(e, 2)}
@@ -174,7 +162,7 @@ const Board = ({
                                 onDelete={handleShowDelete}
                             />
                         )}
-                        <NewTaskCard boardId={boardId} taskStatus={2} onTaskCreated={createdTaskHandler} />
+                        {user.email && <NewTaskCard boardId={boardId} taskStatus={2} onTaskCreated={createdTaskHandler} />}
                     </Col>
                     <Col onDragOver={onDragOverHandler}
                         onDrop={(e) => onDropHandler(e, 3)}
@@ -190,7 +178,7 @@ const Board = ({
                                 onDelete={handleShowDelete}
                             />
                         )}
-                        <NewTaskCard boardId={boardId} taskStatus={3} onTaskCreated={createdTaskHandler} />
+                        {user.email && <NewTaskCard boardId={boardId} taskStatus={3} onTaskCreated={createdTaskHandler} />}
                     </Col>
                     <Col onDragOver={onDragOverHandler}
                         onDrop={(e) => onDropHandler(e, 4)}
@@ -206,11 +194,16 @@ const Board = ({
                                 onDelete={handleShowDelete}
                             />
                         )}
-                        <NewTaskCard boardId={boardId} taskStatus={4} onTaskCreated={createdTaskHandler} />
+                        {user.email && <NewTaskCard boardId={boardId} taskStatus={4} onTaskCreated={createdTaskHandler} />}
                     </Col>
                 </Row>
             </Container>
-            <EditTaskModal taskId={currentTaskId} show={showEditModal} handleClose={handleClose} handleModalSubmit={handleModalSubmit} />
+            <EditTaskModal
+                taskId={currentTaskId}
+                show={showEditModal}
+                handleClose={handleClose}
+                handleModalSubmit={handleModalSubmit}
+                taskStatuses={taskStatuses} />
             <ConfirmDialog
                 show={showDeleteModal}
                 onClose={handleCloseDelete}

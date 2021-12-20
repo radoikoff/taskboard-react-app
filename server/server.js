@@ -1336,8 +1336,8 @@
         tasks: {
             "68e0ed35-2de9-4c61-821d-85f3a49da37b": {
                 "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
-                "title": "Create new SPA 1",
-                "description": "bla bla bla",
+                "title": "Create new SPA",
+                "description": "Morbi condimentum dolor in finibus hendrerit. In eleifend est nisi, quis iaculis quam iaculis vel. Fusce eget euismod neque. Aenean imperdiet ligula sed dolor faucibus posuere.",
                 "status": 2,
                 "boardId": "ed5ecb7e-01fb-478a-8984-1b82eb7d0255",
                 "_createdOn": 1639226598569,
@@ -1351,44 +1351,58 @@
                 "_createdOn": 1639226898716
             },
             "3ada8f6c-cd80-430a-96eb-370a1160da65": {
-                "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
-                "title": "Create new SPA 3",
-                "description": "bla bla bla",
-                "status": 3,
+                "_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
+                "title": "John Task 1",
+                "description": "Description of a very big task.",
+                "status": 4,
                 "boardId": "ed5ecb7e-01fb-478a-8984-1b82eb7d0255",
                 "_createdOn": 1639226914774
             },
             "1d47f828-348e-44d5-8357-231ae94dbb41": {
-                "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
-                "title": "Create new SPA 3",
-                "description": "bla bla bla",
+                "_ownerId": "847ec027-f659-4086-8032-5173e2f9c93a",
+                "title": "John Task 2",
+                "description": "John's task details which can be very long.",
                 "status": 3,
                 "boardId": "ed5ecb7e-01fb-478a-8984-1b82eb7d0255"
             },
             "6b8686dd-e2f2-423f-830e-caa26edf6481": {
-                "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
-                "title": "Create new SPA 3",
-                "description": "bla bla bla",
+                "_ownerId": "35c62d76-8152-4626-8712-eeb96381bxxx",
+                "title": "Vasil Task",
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam lorem tellus.",
                 "status": 4,
                 "boardId": "ed5ecb7e-01fb-478a-8984-1b82eb7d0255",
                 "_createdOn": 1639226935036
+            },
+            "1d47f828-348e-44d5-8357-231ae94dbb41": {
+                "_ownerId": "35c62d76-8152-4626-8712-eeb96381bxxx",
+                "title": "Task One, board B",
+                "description": "Donec erat quam, blandit in sapien ut, ultrices maximus nibh.",
+                "status": 2,
+                "boardId": "c511a794-0028-4f17-96a8-e68fcba7b5fe",
+                "_createdOn": 1639226983054
             }
         },
         boards: {
             "ed5ecb7e-01fb-478a-8984-1b82eb7d0255": {
                 "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
                 "title": "Board A",
-                "description": "This is good board.",
+                "description": "This is a good board.",
                 "_createdOn": 1639178616025,
                 "_updatedOn": 1639434288888
             },
             "c511a794-0028-4f17-96a8-e68fcba7b5fe": {
                 "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
                 "title": "Board B",
-                "description": "dasfsdafdfsadf",
+                "description": "Project XYZ board",
                 "_createdOn": 1639434273927,
                 "_updatedOn": 1639434285805
             }
+        },
+        taskStatuses: {
+            "1": {"name": "Backlog"},
+            "2": {"name": "Doing"},
+            "3": {"name": "In Review"},
+            "4": {"name": "Completed"}
         }
     };
     var rules$1 = {
