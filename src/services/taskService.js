@@ -13,3 +13,5 @@ export const updateTaskStatus = (id, status) => api.patch(`${baseUrl}/tasks/${id
 export const updateTask = (task) => api.patch(`${baseUrl}/tasks/${task._id}`, task);
 
 export const deleteTask = (id) => api.del(`${baseUrl}/tasks/${id}`);
+
+export const createTask = (taskData) => api.post(`${baseUrl}/tasks`, taskData);

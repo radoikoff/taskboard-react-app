@@ -9,12 +9,12 @@ import EditTaskModal from './EditTaskModal';
 import ConfirmDialog from '../Common/ConfirmDialog';
 
 
-const taskTypes = {
-    backlog: 'Backlog',
-    doing: 'Doing',
-    review: 'In Review',
-    completed: "Completed"
-};
+const taskStatuses = [
+    { _id: 1, name: 'Backlog' },
+    { _id: 2, name: 'Doing' },
+    { _id: 3, name: 'In Review' },
+    { _id: 4, name: 'Completed' }
+];
 
 const Board = ({
     match
@@ -127,23 +127,21 @@ const Board = ({
         setShowDeleteModal(false);
     }
 
+    //Create task
+    const createdTaskHandler = (createdTask) => {
+        setTasks((prevState) => [...prevState, createdTask]);
+    };
+
 
     return (
         <>
             <Container>
                 <Row>
-                    <Col>
-                        <TaskGroupHeader name={taskTypes.backlog} />
-                    </Col>
-                    <Col>
-                        <TaskGroupHeader name={taskTypes.doing} />
-                    </Col>
-                    <Col>
-                        <TaskGroupHeader name={taskTypes.review} />
-                    </Col>
-                    <Col>
-                        <TaskGroupHeader name={taskTypes.completed} />
-                    </Col>
+                    {taskStatuses.map(ts =>
+                        <Col key={ts._id}>
+                            <TaskGroupHeader name={ts.name} />
+                        </Col>
+                    )}
                 </Row>
                 <Row>
                     <Col onDragOver={onDragOverHandler}
@@ -160,7 +158,7 @@ const Board = ({
                                 onDelete={handleShowDelete}
                             />
                         )}
-                        <NewTaskCard />
+                        <NewTaskCard boardId={boardId} taskStatus={1} onTaskCreated={createdTaskHandler} />
                     </Col>
                     <Col onDragOver={onDragOverHandler}
                         onDrop={(e) => onDropHandler(e, 2)}
@@ -176,8 +174,7 @@ const Board = ({
                                 onDelete={handleShowDelete}
                             />
                         )}
-                        <NewTaskCard />
-
+                        <NewTaskCard boardId={boardId} taskStatus={2} onTaskCreated={createdTaskHandler} />
                     </Col>
                     <Col onDragOver={onDragOverHandler}
                         onDrop={(e) => onDropHandler(e, 3)}
@@ -193,7 +190,7 @@ const Board = ({
                                 onDelete={handleShowDelete}
                             />
                         )}
-                        <NewTaskCard />
+                        <NewTaskCard boardId={boardId} taskStatus={3} onTaskCreated={createdTaskHandler} />
                     </Col>
                     <Col onDragOver={onDragOverHandler}
                         onDrop={(e) => onDropHandler(e, 4)}
@@ -209,7 +206,7 @@ const Board = ({
                                 onDelete={handleShowDelete}
                             />
                         )}
-                        <NewTaskCard/>
+                        <NewTaskCard boardId={boardId} taskStatus={4} onTaskCreated={createdTaskHandler} />
                     </Col>
                 </Row>
             </Container>
