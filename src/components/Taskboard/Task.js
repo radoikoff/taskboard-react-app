@@ -6,7 +6,8 @@ import './Task.css';
 const Task = ({
     task,
     onDragStart,
-    onTaskEditClick
+    onTaskEditClick,
+    onDelete
 }) => {
 
     return (
@@ -16,8 +17,8 @@ const Task = ({
                     <h6 className="card-title">
                         {task.title}
                     </h6>
-                    <div>
-                        <i className="fas fa-trash-alt i"></i>
+                    <div >
+                        <i id={task._id} onClick={onDelete} className="fas fa-trash-alt i"></i>
                     </div>
                 </div>
                 <Card.Text>

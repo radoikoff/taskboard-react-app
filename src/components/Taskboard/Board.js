@@ -6,6 +6,7 @@ import NewTaskCard from './NewTaskCard';
 import TaskGroupHeader from './TaskGroupHeader';
 import * as notifications from '../../helpers/notifications';
 import EditTaskModal from './EditTaskModal';
+import ConfirmDialog from '../Common/ConfirmDialog';
 
 
 const taskTypes = {
@@ -20,6 +21,7 @@ const Board = ({
 }) => {
 
     const [showEditModal, setShowEditModal] = useState(false);
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [currentTaskId, setCurrentTaskId] = useState('');
     const [tasks, setTasks] = useState([]);
 
@@ -101,7 +103,28 @@ const Board = ({
             newTasks[index] = updatedTask;
             return newTasks;
         });
-        //notifications.createSuccess('');
+    }
+
+    //Delete section
+    const handleShowDelete = (e) => {
+        e.stopPropagation();
+        setCurrentTaskId(e.currentTarget.id);
+        setShowDeleteModal(true);
+    };
+
+    const handleCloseDelete = () => {
+        setCurrentTaskId('');
+        setShowDeleteModal(false);
+    }
+
+    const handleTaskDelete = () => {
+        taskService.deleteTask(currentTaskId)
+            .then(() => {
+                setTasks((prevState) => prevState.filter(t => t._id !== currentTaskId))
+                notifications.createSuccess();
+            })
+            .catch(err => notifications.createError(err.message));
+        setShowDeleteModal(false);
     }
 
 
@@ -134,6 +157,7 @@ const Board = ({
                                 task={t}
                                 onDragStart={onDragStartHandler}
                                 onTaskEditClick={handleShow}
+                                onDelete={handleShowDelete}
                             />
                         )}
                         <NewTaskCard />
@@ -149,6 +173,7 @@ const Board = ({
                                 task={t}
                                 onDragStart={onDragStartHandler}
                                 onTaskEditClick={handleShow}
+                                onDelete={handleShowDelete}
                             />
                         )}
                         <NewTaskCard />
@@ -165,6 +190,7 @@ const Board = ({
                                 task={t}
                                 onDragStart={onDragStartHandler}
                                 onTaskEditClick={handleShow}
+                                onDelete={handleShowDelete}
                             />
                         )}
                         <NewTaskCard />
@@ -180,13 +206,21 @@ const Board = ({
                                 task={t}
                                 onDragStart={onDragStartHandler}
                                 onTaskEditClick={handleShow}
+                                onDelete={handleShowDelete}
                             />
                         )}
-                        <NewTaskCard />
+                        <NewTaskCard/>
                     </Col>
                 </Row>
             </Container>
             <EditTaskModal taskId={currentTaskId} show={showEditModal} handleClose={handleClose} handleModalSubmit={handleModalSubmit} />
+            <ConfirmDialog
+                show={showDeleteModal}
+                onClose={handleCloseDelete}
+                onSave={handleTaskDelete}
+                message="Are you sure you want to delete this task?"
+                saveBtnText="Delete"
+            />
         </>
     );
 };
