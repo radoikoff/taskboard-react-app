@@ -1,6 +1,5 @@
-import { useState } from "react";
 import { Card, Button, Badge } from "react-bootstrap";
-import { useHistory } from "react-router-dom";
+import { useAuth } from '../../contexts/AuthContext';
 import './Task.css';
 
 const Task = ({
@@ -10,6 +9,8 @@ const Task = ({
     onDelete
 }) => {
 
+    const { user } = useAuth();
+
     return (
         <Card id={task._id} className="card-col" draggable onDragStart={onDragStart} onClick={onTaskEditClick}>
             <Card.Body>
@@ -18,7 +19,10 @@ const Task = ({
                         {task.title}
                     </h6>
                     <div >
-                        <i id={task._id} onClick={onDelete} className="fas fa-trash-alt i"></i>
+                        {user._id == task._ownerId
+                            ? <i id={task._id} onClick={onDelete} className="fas fa-trash-alt i"></i>
+                            : null
+                        }
                     </div>
                 </div>
                 <Card.Text>
