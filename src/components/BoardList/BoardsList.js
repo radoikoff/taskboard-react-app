@@ -20,7 +20,7 @@ const BoardsList = () => {
     return (
         <Container>
             <Row md={3}>
-                <Col>
+                <Col className="my-3">
                     <Link to={'/boards/create'} className="btn btn-primary">Create New</Link>
                 </Col>
             </Row>

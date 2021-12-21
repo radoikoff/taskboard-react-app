@@ -39,7 +39,7 @@ function App() {
                         <Route path="/logout" component={Logout} />
                         <Route path="/boards" exact component={BoardsList} />
                         <Route path="/boards/details/:boardId" component={BoardDetails} />
-                        <Route path="/boards/edit/:boardId" component={EditBoard} />
+                        <Route path="/boards/edit/:boardId" component={isAuth(EditBoard)} />
                         <Route path="/boards/create" component={isAuth(CreateBoard)} />
                         <Route path="/boards/:boardId" component={Board} />
                         <Route path="/tasks/create" component={isAuth(CreateTask)} />
