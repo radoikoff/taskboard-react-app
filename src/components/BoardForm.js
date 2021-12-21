@@ -10,7 +10,7 @@ const BoardForm = ({
     formTitle
 }) => {
 
-    const [board, setBoard] = useState({ title: 'x', description: 'x' });
+    const [board, setBoard] = useState({ title: '', description: '' });
     const [errors, setErrors] = useState({ title: false, description: false });
     
     useEffect(() => {

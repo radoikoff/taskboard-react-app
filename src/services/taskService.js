@@ -18,4 +18,7 @@ export const createTask = (taskData) => api.post(`${baseUrl}/tasks`, taskData);
 
 export const getTaskStatuses = () => api.get(`${baseUrl}/taskStatuses`);
 
+export const getTasksCount = (boardId) => api.get(`${baseUrl}/tasks?where=boardId%3D%22${boardId}%22&count`);
+
+
 

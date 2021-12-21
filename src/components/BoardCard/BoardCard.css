@@ -1,3 +1,16 @@
 .board-hover:hover{
     box-shadow: 0px 0px 4px 2px #0ff;
+    cursor: pointer;
+}
+
+.button-area {
+    display: flex;
+    justify-content: space-between;
+}
+
+.info-area {
+    font-size: .8rem;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 0.25rem;
 }
