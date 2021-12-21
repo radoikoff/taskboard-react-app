@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import Task from './Task';
+import Task from '../Task/Task';
 import * as taskService from '../../services/taskService';
-import NewTaskCard from './NewTaskCard';
-import TaskGroupHeader from './TaskGroupHeader';
+import NewTaskCard from '../NewTaskCard/NewTaskCard';
+import TaskGroupHeader from '../TaskGroupHeader/TaskGroupHeader';
 import * as notifications from '../../helpers/notifications';
-import EditTaskModal from './EditTaskModal';
+import EditTaskModal from '../EditTaskModal/EditTaskModal';
 import ConfirmDialog from '../Common/ConfirmDialog';
 import { useAuth } from '../../contexts/AuthContext';
 

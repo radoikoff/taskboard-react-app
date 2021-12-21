@@ -1,6 +1,6 @@
-import * as authService from '../services/authService'
+import * as authService from '../../services/authService'
 import { useEffect } from 'react';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../../contexts/AuthContext';
 
 const Logout = ({history}) => {
 
