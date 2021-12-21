@@ -1,6 +1,9 @@
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
-import {NotificationContainer} from 'react-notifications';
+import { NotificationContainer } from 'react-notifications';
+
 import { AuthProvider } from './contexts/AuthContext';
+import { isAuth } from './hoc/isAuth';
+
 import 'react-notifications/lib/notifications.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.css'
@@ -30,23 +33,23 @@ function App() {
                 <NavHeader />
                 <main>
                     <Switch>
-                        <Route path="/" exact component={Board} />
+                        <Route path="/" exact component={BoardsList} />
                         <Route path="/login" component={Login} />
                         <Route path="/register" component={Register} />
                         <Route path="/logout" component={Logout} />
                         <Route path="/boards" exact component={BoardsList} />
                         <Route path="/boards/details/:boardId" component={BoardDetails} />
                         <Route path="/boards/edit/:boardId" component={EditBoard} />
-                        <Route path="/boards/create" component={CreateBoard} />
+                        <Route path="/boards/create" component={isAuth(CreateBoard)} />
                         <Route path="/boards/:boardId" component={Board} />
-                        <Route path="/tasks/create" component={CreateTask} />
+                        <Route path="/tasks/create" component={isAuth(CreateTask)} />
                         <Route component={() => (<p>Not found</p>)} />
                     </Switch>
                 </main>
                 <footer>
 
                 </footer>
-                <NotificationContainer/>
+                <NotificationContainer />
             </BrowserRouter>
         </AuthProvider>
     );

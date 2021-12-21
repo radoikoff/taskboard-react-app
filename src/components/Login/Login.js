@@ -20,7 +20,7 @@ const Login = ({ history }) => {
             .then((authData) => {
                 login(authData);
 
-                history.push('/');
+                history.goBack();
             })
             .catch(err => {
                 notifications.createError(err.message);

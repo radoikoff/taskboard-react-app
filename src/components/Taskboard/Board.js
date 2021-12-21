@@ -20,7 +20,7 @@ const Board = ({
     const [tasks, setTasks] = useState([]);
     const [taskStatuses, setTaskStatuses] = useState([]);
 
-    const { user } = useAuth();
+    const { user, isAuthenticated } = useAuth();
 
     const boardId = match.params.boardId;
     useEffect(() => {
@@ -41,6 +41,17 @@ const Board = ({
     };
 
     const handleShow = (e) => {
+        if (!isAuthenticated) {
+            notifications.createWarning('You must log in first!');
+            return;
+        }
+
+        const task = tasks.find(t => t._id === e.currentTarget.id);
+        if (user._id !== task._ownerId) {
+            notifications.createWarning('You are not task author!');
+            return;
+        }
+
         setCurrentTaskId(e.currentTarget.id);
         setShowEditModal(true);
     };
@@ -146,7 +157,7 @@ const Board = ({
                                 onDelete={handleShowDelete}
                             />
                         )}
-                        {user.email && <NewTaskCard boardId={boardId} taskStatus={1} onTaskCreated={createdTaskHandler} />}
+                        {isAuthenticated && <NewTaskCard boardId={boardId} taskStatus={1} onTaskCreated={createdTaskHandler} />}
                     </Col>
                     <Col onDragOver={onDragOverHandler}
                         onDrop={(e) => onDropHandler(e, 2)}
@@ -162,7 +173,7 @@ const Board = ({
                                 onDelete={handleShowDelete}
                             />
                         )}
-                        {user.email && <NewTaskCard boardId={boardId} taskStatus={2} onTaskCreated={createdTaskHandler} />}
+                        {isAuthenticated && <NewTaskCard boardId={boardId} taskStatus={2} onTaskCreated={createdTaskHandler} />}
                     </Col>
                     <Col onDragOver={onDragOverHandler}
                         onDrop={(e) => onDropHandler(e, 3)}
@@ -178,7 +189,7 @@ const Board = ({
                                 onDelete={handleShowDelete}
                             />
                         )}
-                        {user.email && <NewTaskCard boardId={boardId} taskStatus={3} onTaskCreated={createdTaskHandler} />}
+                        {isAuthenticated && <NewTaskCard boardId={boardId} taskStatus={3} onTaskCreated={createdTaskHandler} />}
                     </Col>
                     <Col onDragOver={onDragOverHandler}
                         onDrop={(e) => onDropHandler(e, 4)}
@@ -194,7 +205,7 @@ const Board = ({
                                 onDelete={handleShowDelete}
                             />
                         )}
-                        {user.email && <NewTaskCard boardId={boardId} taskStatus={4} onTaskCreated={createdTaskHandler} user={user} />}
+                        {isAuthenticated && <NewTaskCard boardId={boardId} taskStatus={4} onTaskCreated={createdTaskHandler} />}
                     </Col>
                 </Row>
             </Container>

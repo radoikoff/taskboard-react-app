@@ -12,7 +12,7 @@ const Task = ({
     const { user } = useAuth();
 
     return (
-        <Card id={task._id} className="card-col" draggable onDragStart={onDragStart} onClick={onTaskEditClick}>
+        <Card id={task._id} className="card-col" draggable={user._id == task._ownerId} onDragStart={onDragStart} onClick={onTaskEditClick}>
             <Card.Body>
                 <div className="card-action">
                     <h6 className="card-title">
