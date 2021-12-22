@@ -8,6 +8,7 @@ import * as notifications from '../../helpers/notifications';
 import EditTaskModal from '../EditTaskModal/EditTaskModal';
 import ConfirmDialog from '../Common/ConfirmDialog';
 import { useAuth } from '../../contexts/AuthContext';
+import CreateTaskButton from '../CreateTaskButton/CreateTaskButton';
 
 
 const Board = ({
@@ -222,6 +223,7 @@ const Board = ({
                 message="Are you sure you want to delete this task?"
                 saveBtnText="Delete"
             />
+            <CreateTaskButton boardId={boardId}/>
         </>
     );
 };

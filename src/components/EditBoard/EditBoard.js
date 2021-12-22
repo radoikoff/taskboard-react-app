@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import * as boardService from '../../services/boardService';
 import * as notifications from '../../helpers/notifications';
-import BoardForm from '../BoardForm';
+import BoardForm from '../Common/BoardForm';
 
 
 const EditBoard = ({ history, match }) => {

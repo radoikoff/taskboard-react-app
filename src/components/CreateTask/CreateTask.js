@@ -1,69 +1,48 @@
-import { useState } from 'react';
-//import { useNavigate } from 'react-router-dom';
-//import * as petService from '../../services/petService';
-import { Form, Row, Col, InputGroup, Button } from 'react-bootstrap';
-import { AuthContext, useAuth } from '../../contexts/AuthContext';
+import { Col, Row, Container, Card } from 'react-bootstrap';
+import * as notifications from '../../helpers/notifications';
+import * as taskService from '../../services/taskService';
+import TaskForm from '../Common/TaskForm';
 
-const CreateBoard = ({ history }) => {
-    //const { user } = useContext(AuthContext);
-    //const navigate = useNavigate();
-    const [validated, setValidated] = useState(false);
+const CreateTask = ({ match, history }) => {
 
-    const { user } = useAuth();
-    const isAutenticated = Boolean(user.accessToken);
+    const boardId = match.params.boardId;
 
-    const onBoardCreate = (e) => {
+    const handleSubmit = (e, task) => {
         e.preventDefault();
-        let formData = new FormData(e.currentTarget);
 
-        //const { email, password } = Object.fromEntries(new FormData(e.currentTarget));
+        taskService.createTask({ ...task, boardId })
+            .then(() => {
+                notifications.createSuccess();
+                history.push(`/boards/${boardId}`);
+            })
+            .catch(err => {
+                notifications.createError(err.message);
+            });
+    };
 
-        let name = formData.get('name');
-        let description = formData.get('description');
-        let imageUrl = formData.get('imageUrl');
-        let type = formData.get('type');
-
-        /* petService.create({
-            name,
-            description,
-            imageUrl,
-            type,
-        }, user.accessToken)
-            .then(result => {
-                navigate('/');
-            }) */
-    }
-
-    const handleSubmit = (event) => {
-        const form = event.currentTarget;
-        if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-        }
-
-        setValidated(true);
+    const handleClose = (e) => {
+        e.preventDefault();
+        history.goBack();
     };
 
     return (
-        <section id="create-board">
-            <Form noValidate validated={validated} onSubmit={handleSubmit}>
-                <Form.Group as={Row} className="align-items-top" controlId="create-board-form">
-                    <Col xs="auto">
-                        <Form.Label>Board Name</Form.Label>
-                    </Col>
-                    <Col>
-                        <InputGroup hasValidation>
-                            <Form.Control type="text" placeholder="Username" required />
-                            <Form.Control.Feedback type="invalid">Please choose a username.</Form.Control.Feedback>
-                        </InputGroup>
-                    </Col>
-                    <Col>
-                        <Button type="submit">Create</Button>
-                    </Col>
-                </Form.Group>
-            </Form>
-        </section>
+        <Container>
+            <Row className="justify-content-md-center my-3">
+                <Col md={4}>
+                    <h3>Create Task</h3>
+                </Col>
+            </Row>
+            <Row className="justify-content-md-center">
+                <Col md={4}>
+                    <Card>
+                        <Card.Body>
+                            <TaskForm onSubmit={handleSubmit} onClose={handleClose} />
+                        </Card.Body>
+                    </Card>
+                </Col>
+            </Row>
+        </Container>
     );
 }
 
-export default CreateBoard;
+export default CreateTask;

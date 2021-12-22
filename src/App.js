@@ -42,7 +42,7 @@ function App() {
                         <Route path="/boards/edit/:boardId" component={isAuth(EditBoard)} />
                         <Route path="/boards/create" component={isAuth(CreateBoard)} />
                         <Route path="/boards/:boardId" component={Board} />
-                        <Route path="/tasks/create" component={isAuth(CreateTask)} />
+                        <Route path="/tasks/create/:boardId" component={isAuth(CreateTask)} />
                         <Route component={() => (<p>Not found</p>)} />
                     </Switch>
                 </main>
