@@ -10,18 +10,14 @@ import '@fortawesome/fontawesome-free/css/all.css'
 import './App.css';
 
 import NavHeader from './components/Nav/NavHeader';
-//import Dashboard from './components/Dashboard';
 import Register from './components/Register/Register';
 import Login from './components/Login/Login';
 import Logout from './components/Logout/Logout';
-//import BoardsList from './components/BoardsList';
-
 import BoardsList from './components/BoardList/BoardsList';
 import CreateBoard from './components/CreateBoard/CreateBoard';
 import BoardDetails from './components/BoardDetails/BoardDetails';
 import EditBoard from './components/EditBoard/EditBoard';
 import Board from './components/Board/Board';
-
 import CreateTask from './components/CreateTask/CreateTask';
 
 

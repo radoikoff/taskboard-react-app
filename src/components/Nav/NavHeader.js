@@ -11,7 +11,6 @@ const NavHeader = () => {
             <Container>
                 <Navbar.Brand>Task Manager</Navbar.Brand>
                 <Nav className="me-auto">
-                    <Nav.Link as={Link} to="/">Home</Nav.Link>
                     <Nav.Link as={Link} to="/boards">Boards</Nav.Link>
                     <Nav.Link as={Link} to="/">My Tasks</Nav.Link>
                 </Nav>
