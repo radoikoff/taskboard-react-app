@@ -18,7 +18,6 @@ const Register = ({ history }) => {
 
         authService.register(email, password, firstName, lastName)
             .then((authData) => {
-                console.log(authData)
                 login(authData);
 
                 history.push('/');

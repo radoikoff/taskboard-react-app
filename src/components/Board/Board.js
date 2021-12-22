@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Alert } from 'react-bootstrap';
 import Task from '../Task/Task';
 import * as taskService from '../../services/taskService';
+import * as boardService from '../../services/boardService';
 import NewTaskCard from '../NewTaskCard/NewTaskCard';
 import TaskGroupHeader from '../TaskGroupHeader/TaskGroupHeader';
 import * as notifications from '../../helpers/notifications';
@@ -19,12 +20,15 @@ const Board = ({
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [currentTaskId, setCurrentTaskId] = useState('');
     const [tasks, setTasks] = useState([]);
+    const [board, setBoard] = useState({});
     const [taskStatuses, setTaskStatuses] = useState([]);
 
     const { user, isAuthenticated } = useAuth();
 
     const boardId = match.params.boardId;
     useEffect(() => {
+        boardService.getOne(boardId)
+            .then(res => setBoard(res));
         taskService.getAllTasks(boardId)
             .then(res => setTasks(Object.values(res)));
     }, [boardId]);
@@ -137,6 +141,9 @@ const Board = ({
         <>
             <Container>
                 <Row>
+                    <h4 className="mt-3">{board.title}</h4>
+                </Row>
+                <Row>
                     {taskStatuses.map(ts =>
                         <Col key={ts._id}>
                             <TaskGroupHeader name={ts.name} />
@@ -223,7 +230,7 @@ const Board = ({
                 message="Are you sure you want to delete this task?"
                 saveBtnText="Delete"
             />
-            <CreateTaskButton boardId={boardId}/>
+            <CreateTaskButton boardId={boardId} />
         </>
     );
 };
