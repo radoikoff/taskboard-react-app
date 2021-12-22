@@ -1344,6 +1344,7 @@
                 "description": "Morbi condimentum dolor in finibus hendrerit. In eleifend est nisi, quis iaculis quam iaculis vel. Fusce eget euismod neque. Aenean imperdiet ligula sed dolor faucibus posuere.",
                 "status": 2,
                 "boardId": "ed5ecb7e-01fb-478a-8984-1b82eb7d0255",
+                "tags": ["bug", "dev"],
                 "_createdOn": 1639226598569,
             },
             "4544aecd-4b86-436d-af9a-e5784688bd03": {
@@ -1352,6 +1353,7 @@
                 "description": "asd asdfff ds f asfsad fsdaf sda",
                 "status": 1,
                 "boardId": "ed5ecb7e-01fb-478a-8984-1b82eb7d0255",
+                "tags": ["bug"],
                 "_createdOn": 1639226898716
             },
             "3ada8f6c-cd80-430a-96eb-370a1160da65": {
@@ -1359,6 +1361,7 @@
                 "title": "John Task 1",
                 "description": "Description of a very big task.",
                 "status": 4,
+                "tags": [],
                 "boardId": "ed5ecb7e-01fb-478a-8984-1b82eb7d0255",
                 "_createdOn": 1639226914774
             },
@@ -1367,13 +1370,16 @@
                 "title": "John Task 2",
                 "description": "John's task details which can be very long.",
                 "status": 3,
-                "boardId": "ed5ecb7e-01fb-478a-8984-1b82eb7d0255"
+                "tags": ["fix", "dev"],
+                "boardId": "ed5ecb7e-01fb-478a-8984-1b82eb7d0255",
+                "_createdOn": 1639226981447
             },
             "6b8686dd-e2f2-423f-830e-caa26edf6481": {
                 "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
                 "title": "Vasil Task",
                 "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam lorem tellus.",
                 "status": 4,
+                "tags": ["bug", "fix", "dev", "new"],
                 "boardId": "ed5ecb7e-01fb-478a-8984-1b82eb7d0255",
                 "_createdOn": 1639226935036
             },
@@ -1383,6 +1389,7 @@
                 "description": "Donec erat quam, blandit in sapien ut, ultrices maximus nibh.",
                 "status": 2,
                 "boardId": "c511a794-0028-4f17-96a8-e68fcba7b5fe",
+                "tags":[],
                 "_createdOn": 1639226983054
             }
         },
@@ -1407,6 +1414,12 @@
             "2": {"name": "Doing"},
             "3": {"name": "In Review"},
             "4": {"name": "Completed"}
+        },
+        tags: {
+            "1": {"name": "bug"},
+            "2": {"name": "dev"},
+            "3": {"name": "fix"},
+            "4": {"name": "new"}
         }
     };
     var rules$1 = {

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Modal, Button, Form, Row, Col, ToggleButton, ToggleButtonGroup, Badge } from 'react-bootstrap';
 import * as taskService from '../../services/taskService';
+import * as tagService from '../../services/tagService';
 import * as notifications from '../../helpers/notifications';
 
 
@@ -18,13 +19,17 @@ const EditTaskModal = ({
         status: 1,
         tags: []
     });
-    const [errors, setErrors] = useState({ title: false, description: false });
 
+    const [errors, setErrors] = useState({ title: false, description: false });
+    const [tags, setTags] = useState([]);
 
     useEffect(() => {
         if (taskId) {
             taskService.getTask(taskId)
-                .then(res => setTask(res))
+                .then(res => setTask(res));
+
+            tagService.getAllTags()
+                .then(res => setTags(res));
         }
         setErrors({ title: false, description: false });
     }, [taskId])
@@ -123,10 +128,13 @@ const EditTaskModal = ({
                         <Form.Group as={Col}>
                             <Form.Label>Tags</Form.Label>
                             <ToggleButtonGroup type="checkbox" value={task.tags} onChange={handleTagChange}>
-                                <ToggleButton variant="outline-info" id="tbg-btn-1" value={'dev'}>dev</ToggleButton>
+                                {tags.map(t =>
+                                    <ToggleButton key={t._id} variant="outline-info" id={t._id} value={t.name}>{t.name}</ToggleButton>
+                                )}
+                                {/*              <ToggleButton variant="outline-info" id="tbg-btn-1" value={'dev'}>dev</ToggleButton>
                                 <ToggleButton variant="outline-info" id="tbg-btn-2" value={'bug'}>bug</ToggleButton>
                                 <ToggleButton variant="outline-info" id="tbg-btn-3" value={'fix'}>fix</ToggleButton>
-                                <ToggleButton variant="outline-info" id="tbg-btn-4" value={'new'}>new</ToggleButton>
+                                <ToggleButton variant="outline-info" id="tbg-btn-4" value={'new'}>new</ToggleButton> */}
                             </ToggleButtonGroup>
                         </Form.Group>
                     </Row>
