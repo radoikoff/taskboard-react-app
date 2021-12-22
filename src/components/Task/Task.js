@@ -33,8 +33,9 @@ const Task = ({
                 </Card.Text>
 
                 <div className="tags-list">
-                    <Badge variant="info">dev</Badge>
-                    <Badge variant="info">dev</Badge>
+                    {task.tags?.map(tag =>
+                        <Badge key={tag} variant="info" style={{marginRight: '0.1rem'}}>{tag}</Badge>
+                    )}
                 </div>
                 <div className="author-area">
                     <cite>Owner:</cite> &nbsp;

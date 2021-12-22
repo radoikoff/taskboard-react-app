@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Modal, Button, Form, Row, Col } from 'react-bootstrap';
+import { Modal, Button, Form, Row, Col, ToggleButton, ToggleButtonGroup, Badge } from 'react-bootstrap';
 import * as taskService from '../../services/taskService';
 import * as notifications from '../../helpers/notifications';
 
@@ -16,9 +16,10 @@ const EditTaskModal = ({
         title: '',
         description: '',
         status: 1,
-        tags: [1, 3]
+        tags: []
     });
     const [errors, setErrors] = useState({ title: false, description: false });
+
 
     useEffect(() => {
         if (taskId) {
@@ -34,6 +35,10 @@ const EditTaskModal = ({
         setTask((t) => {
             return { ...t, [name]: value }
         });
+    };
+
+    const handleTagChange = (newTags, e) => {
+        setTask((prevState) => ({ ...prevState, tags: newTags }));
     };
 
     const handleSubmit = (e) => {
@@ -117,12 +122,12 @@ const EditTaskModal = ({
 
                         <Form.Group as={Col}>
                             <Form.Label>Tags</Form.Label>
-                            <Form.Select name="tags" multiple={true} value={task.tags} onChange={handleInputChange}>
-                                <option value={1}>1</option>
-                                <option value={2}>2</option>
-                                <option value={3}>3</option>
-                                <option value={4}>4</option>
-                            </Form.Select>
+                            <ToggleButtonGroup type="checkbox" value={task.tags} onChange={handleTagChange}>
+                                <ToggleButton variant="outline-info" id="tbg-btn-1" value={'dev'}>dev</ToggleButton>
+                                <ToggleButton variant="outline-info" id="tbg-btn-2" value={'bug'}>bug</ToggleButton>
+                                <ToggleButton variant="outline-info" id="tbg-btn-3" value={'fix'}>fix</ToggleButton>
+                                <ToggleButton variant="outline-info" id="tbg-btn-4" value={'new'}>new</ToggleButton>
+                            </ToggleButtonGroup>
                         </Form.Group>
                     </Row>
                     <div className="d-flex justify-content-end align-items-center">
